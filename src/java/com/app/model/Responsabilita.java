@@ -5,10 +5,19 @@
  */
 package com.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author FSEVERI\romano3927
  */
+@Entity
+@Table(name = "Responsabilita")
 public class Responsabilita {
     
+    @Id @GeneratedValue
+    private int m;
 }
