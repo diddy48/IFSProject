@@ -19,5 +19,5 @@ import javax.persistence.Table;
 public class Responsabilita {
     
     @Id @GeneratedValue
-    private int ma;
+    private int id;
 }

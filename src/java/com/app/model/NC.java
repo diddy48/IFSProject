@@ -5,6 +5,10 @@
  */
 package com.app.model;
 
+import com.app.objects.Fase;
+import com.app.objects.Priorita;
+import com.app.objects.RepartoProdotto;
+import com.app.objects.Tipo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -43,10 +47,10 @@ public class NC implements Serializable {
     private Date DataC;
 
     @Column(name = "Fase", nullable = false)
-    private Enum fase;
+    private Fase fase;
     
     @Column(name = "Priorita", nullable = false)
-    private Enum priorita;
+    private  Priorita priorita;
     
     @Column(name = "CodiceProdotto", nullable = false, length=6)
     private int codiceProdotto;
@@ -55,7 +59,7 @@ public class NC implements Serializable {
     private float costoNC;
     
     @Column(name = "RepartoProdotto", nullable = false)
-    private Enum repartoP;
+    private RepartoProdotto repartoP;
     
     @Column(name = "AContenimento", length = 300)
     private String aContenimento;
@@ -72,10 +76,10 @@ public class NC implements Serializable {
     @Column(name = "IntesaComprensione",  length = 300)
     private String intesaComp;
 
-     @Column(name = "Tipo", nullable = false)
-    private Enum tipo;
+    @Column(name = "Tipo", nullable = false)
+    private Tipo tipo;
      
-      @Column(name = "Cliente", length=40)
+    @Column(name = "Cliente", length=40)
     private String cliente;
       
     @ManyToOne(fetch=FetchType.EAGER)
