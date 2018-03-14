@@ -32,6 +32,6 @@ public class Responsabilita {
     @EmbeddedId
     private PKResponsabilita pkResponsabilita;
     
-    @Column(name="RuoloLavorita",length=40)
+    @Column(name="RuoloLavorativo",length=40)
     private String ruoloLavorativo;
 }
