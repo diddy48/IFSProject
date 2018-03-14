@@ -37,7 +37,7 @@ public class DipendentiDaoImpl implements DipendentiDao {
     @Override
     public List<Dipendenti> findAll() {
         List<Dipendenti> l;
-        Query q=getSession().createQuery("select * from Dipendenti");
+        Query q=getSession().createQuery("from Dipendenti");
         l=q.list(); 
       
         return l;

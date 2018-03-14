@@ -50,7 +50,7 @@ public class NC implements Serializable {
     private Fase fase;
     
     @Column(name = "Priorita", nullable = false)
-    private  Priorita priorita;
+    private Priorita priorita;
     
     @Column(name = "CodiceProdotto", nullable = false, length=6)
     private int codiceProdotto;

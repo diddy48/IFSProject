@@ -1,12 +1,12 @@
 package com.app.objects;
 
-public enum RepartoProdotto{
+public enum RepartoProdotto {
 
-Progettazione,
-Produzione,
-LogisticaE,
-LogisticaU,
-Commerciale,
-Amministrativo
+    Progettazione,
+    Produzione,
+    LogisticaE,
+    LogisticaU,
+    Commerciale,
+    Amministrativo
 
 }
