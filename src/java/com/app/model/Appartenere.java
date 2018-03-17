@@ -8,9 +8,6 @@ package com.app.model;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -18,10 +15,10 @@ import javax.persistence.Table;
  * @author FSEVERI\romano3927
  */
 @Entity
-@Table(name = "Responsabilita")
-public class Responsabilita {
+@Table(name = "Appartenere")
+public class Appartenere {
     
-    class PKResponsabilita{
+    class PKAppartenere{
         @Column(name="Matricola", length=5)
         private int matricola;
         
@@ -30,8 +27,8 @@ public class Responsabilita {
     }
     
     @EmbeddedId
-    private PKResponsabilita pkResponsabilita;
+    private PKAppartenere pkAppartenere;
     
-    @Column(name="RepartoLavorativo",length=40)
-    private String repartoLavorativo;
+    @Column(name="Ruolo",length=50)
+    private String ruolo;
 }
