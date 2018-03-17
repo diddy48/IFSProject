@@ -8,6 +8,7 @@ package com.app.controller;
 
 import com.app.dao.DipendentiDao;
 import com.app.model.Dipendenti;
+import com.app.service.DipendentiService;
 import java.util.List;
  
  
@@ -21,18 +22,17 @@ import org.springframework.context.annotation.ComponentScan;
  
 @Controller
 @RequestMapping("/")
-@ComponentScan("com.app.dao")
+@ComponentScan("com.app.service")
 public class DipendentiController {
  
     @Autowired
-    DipendentiDao dao;
+    DipendentiService service;
     /*
      * This method will list all existing users.
      */
-    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
- 
-        List<Dipendenti> dipendenti=dao.findAll();
+        List<Dipendenti> dipendenti=service.findAll();
         model.addAttribute("tutti", dipendenti);
         return "dipendenti";
     }

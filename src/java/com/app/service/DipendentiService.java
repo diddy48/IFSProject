@@ -14,5 +14,5 @@ public interface DipendentiService {
     /*void saveDipedenti(Dipendenti dip);
     void updateDipedenti(Dipendenti dip);
     void deleteDipendenti(int id);*/
-    List<Dipendenti> findAllDipedenti(); 
+    List<Dipendenti> findAll(); 
 }

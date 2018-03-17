@@ -36,11 +36,13 @@ public class DipendentiDaoImpl implements DipendentiDao {
 
     @Override
     public List<Dipendenti> findAll() {
-        List<Dipendenti> l;
+        /*List<Dipendenti> l;
         Query q=getSession().createQuery("from Dipendenti");
         l=q.list(); 
       
-        return l;
+        return l;*/
+        Criteria criteria = getSession().createCriteria(Dipendenti.class);
+        return (List<Dipendenti>) criteria.list();
     }
 
  

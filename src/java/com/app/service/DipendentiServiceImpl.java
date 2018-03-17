@@ -46,7 +46,7 @@ public class DipendentiServiceImpl implements DipendentiService {
     }
 */
     @Override
-    public List<Dipendenti> findAllDipedenti() {
+    public List<Dipendenti> findAll() {
         return dao.findAll();
     }
  
