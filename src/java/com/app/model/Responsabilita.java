@@ -24,14 +24,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Responsabilita")
 public class Responsabilita {
-    
-    class PKResponsabilita{
-        @ManyToOne(fetch=FetchType.EAGER)
-        @JoinColumn(name="Matricola", nullable=false) //length=5
+
+    class PKResponsabilita {
+
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "Matricola", nullable = false) //length=5
         private Dipendenti resonsabile;
-        
-        @ManyToOne(fetch=FetchType.EAGER)
-        @JoinColumn(name="NumeroNC", nullable=false) //length=6
+
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "NumeroNC", nullable = false) //length=6
         private NC nc;
 
         public Dipendenti getResonsabile() {
@@ -49,14 +50,13 @@ public class Responsabilita {
         public void setNc(NC nc) {
             this.nc = nc;
         }
-        
-        
+
     }
-    
+
     @EmbeddedId
     private PKResponsabilita pkResponsabilita;
-    
-    @Column(name="RepartoLavorativo",length=40)
+
+    @Column(name = "RepartoLavorativo", length = 40)
     private String repartoLavorativo;
 
     public Responsabilita() {
@@ -106,5 +106,5 @@ public class Responsabilita {
         }
         return true;
     }
-    
+
 }
