@@ -87,11 +87,11 @@ public class NC implements Serializable {
     private String cliente;
       
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="Matricola")
+    @JoinColumn(name="Richiedente")
     private Dipendenti richiedente;
     
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="Matricola", nullable=false)
+    @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere")
