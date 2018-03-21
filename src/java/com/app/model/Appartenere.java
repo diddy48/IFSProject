@@ -30,6 +30,9 @@ public class Appartenere {
         @ManyToOne(fetch=FetchType.EAGER)
         @JoinColumn(name="NumeroNC", nullable=false)//length = 5
         private NC nc;
+        
+        public PKAppartenere(){
+        }
 
         public Dipendenti getMembro() {
             return membro;

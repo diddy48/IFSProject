@@ -19,7 +19,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
  
-@Transactional
+//@Transactional
 @Repository("dipendentiDao")
 public class DipendentiDaoImpl implements DipendentiDao {
  
