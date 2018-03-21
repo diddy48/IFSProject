@@ -5,7 +5,6 @@
  */
 package com.app.model;
 
-import com.app.objects.Fase;
 import com.app.objects.Priorita;
 import com.app.objects.RepartoProdotto;
 import com.app.objects.Tipo;
@@ -49,9 +48,6 @@ public class NC implements Serializable {
 
     @Column(name = "DataChiusura")
     private Date DataC;
-
-    @Column(name = "Fase", nullable = false)
-    private Fase fase;
     
     @Column(name = "Priorita", nullable = false)
     private Priorita priorita;
@@ -141,14 +137,6 @@ public class NC implements Serializable {
 
     public void setDataC(Date DataC) {
         this.DataC = DataC;
-    }
-
-    public Fase getFase() {
-        return fase;
-    }
-
-    public void setFase(Fase fase) {
-        this.fase = fase;
     }
 
     public Priorita getPriorita() {
@@ -279,7 +267,6 @@ public class NC implements Serializable {
         hash = 83 * hash + Objects.hashCode(this.descrizione);
         hash = 83 * hash + Objects.hashCode(this.dataA);
         hash = 83 * hash + Objects.hashCode(this.DataC);
-        hash = 83 * hash + Objects.hashCode(this.fase);
         hash = 83 * hash + Objects.hashCode(this.priorita);
         hash = 83 * hash + this.codiceProdotto;
         hash = 83 * hash + Float.floatToIntBits(this.costoNC);
@@ -347,9 +334,6 @@ public class NC implements Serializable {
             return false;
         }
         if (!Objects.equals(this.DataC, other.DataC)) {
-            return false;
-        }
-        if (this.fase != other.fase) {
             return false;
         }
         if (this.priorita != other.priorita) {
