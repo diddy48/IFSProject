@@ -6,7 +6,11 @@
 package com.app.model;
 
 import java.util.Objects;
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,15 +24,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Appartenere")
+@AssociationOverrides({
+    @AssociationOverride(name = "pkAppartenere.membro",
+        joinColumns ={ @JoinColumn(name = "Matricola")}),
+    @AssociationOverride(name = "pkAppartenere.nc",
+        joinColumns = {@JoinColumn(name = "NumeroNC")}) })
 public class Appartenere {
     
+    @Embeddable
     class PKAppartenere{
-        @ManyToOne(fetch=FetchType.EAGER)
-        @JoinColumn(name="Matricola", nullable=false) //length = 6
+        @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+        //@JoinColumn(name="Matricola", nullable=false) //length = 6
         private Dipendenti membro;
         
-        @ManyToOne(fetch=FetchType.EAGER)
-        @JoinColumn(name="NumeroNC", nullable=false)//length = 5
+        @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+        //@JoinColumn(name="NumeroNC", nullable=false)//length = 5
         private NC nc;
         
         public PKAppartenere(){
@@ -53,7 +63,7 @@ public class Appartenere {
     }
     
     @EmbeddedId
-    private PKAppartenere pkAppartenere;
+    private PKAppartenere pkAppartenere = new PKAppartenere();
     
     @Column(name="Ruolo",length=50)
     private String ruolo;

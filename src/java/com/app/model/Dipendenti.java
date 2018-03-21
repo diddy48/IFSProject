@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,10 +60,10 @@ public class Dipendenti implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy="richiedente")
     private Set<NC> ncRichiede = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
     private Set<NC> ncAppartiene = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     private Set<NC> ncResponsabile = new HashSet();
     
     public Dipendenti() {

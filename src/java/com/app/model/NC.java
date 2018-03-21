@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -95,10 +96,10 @@ public class NC implements Serializable {
     @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.getMembro()")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.nc",cascade = CascadeType.ALL)
     private Set<Dipendenti> membri = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.getNc()")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.nc", cascade = CascadeType.ALL)
     private Set<Dipendenti> responsabili  = new HashSet();
 
     public NC() {

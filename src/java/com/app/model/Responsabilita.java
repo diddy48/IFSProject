@@ -6,7 +6,11 @@
 package com.app.model;
 
 import java.util.Objects;
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,17 +27,26 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Responsabilita")
+@AssociationOverrides({
+    @AssociationOverride(name = "pkResponsabilita.responsabile",
+        joinColumns ={ @JoinColumn(name = "Matricola")}),
+    @AssociationOverride(name = "pkResponsabilita.nc",
+        joinColumns ={ @JoinColumn(name = "NumeroNC")})})
 public class Responsabilita {
 
+    @Embeddable
     class PKResponsabilita {
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "Matricola", nullable = false) //length=5
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+        //@JoinColumn(name = "Matricola", nullable = false) //length=5
         private Dipendenti resonsabile;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "NumeroNC", nullable = false) //length=6
+        @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+        //@JoinColumn(name = "NumeroNC", nullable = false) //length=6
         private NC nc;
+        
+        public PKResponsabilita(){
+        }
 
         public Dipendenti getResonsabile() {
             return resonsabile;
@@ -54,7 +67,7 @@ public class Responsabilita {
     }
 
     @EmbeddedId
-    private PKResponsabilita pkResponsabilita;
+    private PKResponsabilita pkResponsabilita = new PKResponsabilita();
 
     @Column(name = "RepartoLavorativo", length = 40)
     private String repartoLavorativo;
