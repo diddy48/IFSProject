@@ -95,10 +95,10 @@ public class NC implements Serializable {
     @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.getMembro()")
     private Set<Dipendenti> membri = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.getNc()")
     private Set<Dipendenti> responsabili  = new HashSet();
 
     public NC() {
