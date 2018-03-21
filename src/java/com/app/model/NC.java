@@ -15,6 +15,8 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -49,6 +51,7 @@ public class NC implements Serializable {
     @Column(name = "DataChiusura")
     private Date DataC;
     
+    @Enumerated(EnumType.STRING)
     @Column(name = "Priorita", nullable = false)
     private Priorita priorita;
     
@@ -58,6 +61,7 @@ public class NC implements Serializable {
     @Column(name = "CostoNC")
     private float costoNC;
     
+    @Enumerated(EnumType.STRING)
     @Column(name = "RepartoProdotto", nullable = false)
     private RepartoProdotto repartoP;
     
@@ -76,6 +80,7 @@ public class NC implements Serializable {
     @Column(name = "IntesaComprensione",  length = 300)
     private String intesaComp;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "Tipo", nullable = false)
     private Tipo tipo;
      
