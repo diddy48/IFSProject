@@ -19,8 +19,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
  
-//@Transactional
-@Repository("dipendentiDao")
+@Transactional
+@Repository("DipendentiDao")
 public class DipendentiDaoImpl implements DipendentiDao {
  
     @Autowired
@@ -31,6 +31,7 @@ public class DipendentiDaoImpl implements DipendentiDao {
         return sessionFactory.getCurrentSession();
     }
     public Dipendenti findById(int id) {
+        getSession().beginTransaction();
         return (Dipendenti) getSession().get(Dipendenti.class, id);
     }
 

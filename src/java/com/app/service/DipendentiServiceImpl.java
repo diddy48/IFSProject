@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.model.Dipendenti;
 import com.app.dao.DipendentiDao;
  
-@Service("dipendentiService")//forse minuscolo dip
+@Service("DipendentiService")//forse minuscolo dip
 @Transactional
 public class DipendentiServiceImpl implements DipendentiService {
  

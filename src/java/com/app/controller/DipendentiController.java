@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.PathVariable;
  
 @Controller
 @RequestMapping("/")
@@ -31,10 +32,21 @@ public class DipendentiController {
      * This method will list all existing users.
      */
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
+    public String listDipendenti(ModelMap model) {
         List<Dipendenti> dipendenti=service.findAll();
         model.addAttribute("dipendenti", dipendenti);
         return "dipendenti";
+    }
+    
+    @RequestMapping(value="/showNC/{matricola}", method=RequestMethod.GET)
+    public String listNC(@PathVariable("matricola") int matricola, ModelMap model){
+        Dipendenti dipendente=service.findById(matricola);
+        model.addAttribute("dipendente",dipendente);
+        /*model.addAttribute("ncResponsabile",dipendente.getNcResponsabile());
+        model.addAttribute("ncLeader",dipendente.getNcLeader());
+        model.addAttribute("ncMembro",dipendente.getNcAppartiene());
+        model.addAttribute("ncRichiede",dipendente.getNcRichiede());*/
+        return "nc";
     }
  
 }
