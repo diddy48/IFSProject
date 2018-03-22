@@ -97,10 +97,10 @@ public class NC implements Serializable {
     private Dipendenti teamLeader;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.nc",cascade = CascadeType.ALL)
-    private Set<Dipendenti> membri = new HashSet();
+    private Set<Appartenere> membri = new HashSet();
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.nc", cascade = CascadeType.ALL)
-    private Set<Dipendenti> responsabili  = new HashSet();
+    private Set<Responsabilita> responsabili  = new HashSet();
 
     public NC() {
     }
@@ -249,46 +249,20 @@ public class NC implements Serializable {
         this.teamLeader = teamLeader;
     }
 
-    public Set<Dipendenti> getMembri() {
+    public Set<Appartenere> getMembri() {
         return membri;
     }
 
-    public void setMembri(Set<Dipendenti> membri) {
+    public void setMembri(Set<Appartenere> membri) {
         this.membri = membri;
     }
 
-    public Set<Dipendenti> getResponsabili() {
+    public Set<Responsabilita> getResponsabili() {
         return responsabili;
     }
 
-    public void setResponsabili(Set<Dipendenti> responsabili) {
+    public void setResponsabili(Set<Responsabilita> responsabili) {
         this.responsabili = responsabili;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + this.numeroNC;
-        hash = 83 * hash + Objects.hashCode(this.titolo);
-        hash = 83 * hash + Objects.hashCode(this.descrizione);
-        hash = 83 * hash + Objects.hashCode(this.dataA);
-        hash = 83 * hash + Objects.hashCode(this.DataC);
-        hash = 83 * hash + Objects.hashCode(this.priorita);
-        hash = 83 * hash + this.codiceProdotto;
-        hash = 83 * hash + Float.floatToIntBits(this.costoNC);
-        hash = 83 * hash + Objects.hashCode(this.repartoP);
-        hash = 83 * hash + Objects.hashCode(this.aContenimento);
-        hash = 83 * hash + Objects.hashCode(this.cause);
-        hash = 83 * hash + Objects.hashCode(this.aCorrettiva);
-        hash = 83 * hash + Objects.hashCode(this.aPreventiva);
-        hash = 83 * hash + Objects.hashCode(this.intesaComp);
-        hash = 83 * hash + Objects.hashCode(this.tipo);
-        hash = 83 * hash + Objects.hashCode(this.cliente);
-        hash = 83 * hash + Objects.hashCode(this.richiedente);
-        hash = 83 * hash + Objects.hashCode(this.teamLeader);
-        hash = 83 * hash + Objects.hashCode(this.membri);
-        hash = 83 * hash + Objects.hashCode(this.responsabili);
-        return hash;
     }
 
     @Override

@@ -61,10 +61,10 @@ public class Dipendenti implements Serializable {
     private Set<NC> ncRichiede = new HashSet();
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
-    private Set<NC> ncAppartiene = new HashSet();
+    private Set<Appartenere> ncAppartiene = new HashSet();
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
-    private Set<NC> ncResponsabile = new HashSet();
+    private Set<Responsabilita> ncResponsabile = new HashSet();
     
     public Dipendenti() {
     }
@@ -149,38 +149,20 @@ public class Dipendenti implements Serializable {
         this.ncRichiede = ncRichiede;
     }
 
-    public Set<NC> getNcAppartiene() {
+    public Set<Appartenere> getNcAppartiene() {
         return ncAppartiene;
     }
 
-    public void setNcAppartiene(Set<NC> ncAppartiene) {
+    public void setNcAppartiene(Set<Appartenere> ncAppartiene) {
         this.ncAppartiene = ncAppartiene;
     }
 
-    public Set<NC> getNcResponsabile() {
+    public Set<Responsabilita> getNcResponsabile() {
         return ncResponsabile;
     }
 
-    public void setNcResponsabile(Set<NC> ncResponsabile) {
+    public void setNcResponsabile(Set<Responsabilita> ncResponsabile) {
         this.ncResponsabile = ncResponsabile;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.matricola;
-        hash = 97 * hash + Objects.hashCode(this.cf);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.cognome);
-        hash = 97 * hash + Objects.hashCode(this.dataNascita);
-        hash = 97 * hash + Objects.hashCode(this.ruolo);
-        hash = 97 * hash + Objects.hashCode(this.mail);
-        hash = 97 * hash + Objects.hashCode(this.password);
-        hash = 97 * hash + Objects.hashCode(this.ncLeader);
-        hash = 97 * hash + Objects.hashCode(this.ncRichiede);
-        hash = 97 * hash + Objects.hashCode(this.ncAppartiene);
-        hash = 97 * hash + Objects.hashCode(this.ncResponsabile);
-        return hash;
     }
 
     @Override

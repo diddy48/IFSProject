@@ -16,8 +16,8 @@
  
 <body>
     <h2>Utenti</h2>  
-    <table>
-    <c:forEach items="${tutti}" var="u">
+    <table border="1" cellspacing ="3">
+    <c:forEach items="${dipendenti}" var="u">
 	<tr>
             <td>${u.nome}</td>
             <td>${u.cognome}</td>

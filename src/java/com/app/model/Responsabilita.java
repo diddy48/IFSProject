@@ -5,6 +5,7 @@
  */
 package com.app.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
@@ -29,42 +30,10 @@ import javax.persistence.Table;
 @Table(name = "Responsabilita")
 @AssociationOverrides({
     @AssociationOverride(name = "pkResponsabilita.responsabile",
-        joinColumns ={ @JoinColumn(name = "Matricola")}),
+        joinColumns = @JoinColumn(name = "Matricola")),
     @AssociationOverride(name = "pkResponsabilita.nc",
-        joinColumns ={ @JoinColumn(name = "NumeroNC")})})
-public class Responsabilita {
-
-    @Embeddable
-    class PKResponsabilita {
-
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        //@JoinColumn(name = "Matricola", nullable = false) //length=5
-        private Dipendenti resonsabile;
-
-        @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
-        //@JoinColumn(name = "NumeroNC", nullable = false) //length=6
-        private NC nc;
-        
-        public PKResponsabilita(){
-        }
-
-        public Dipendenti getResonsabile() {
-            return resonsabile;
-        }
-
-        public void setResonsabile(Dipendenti resonsabile) {
-            this.resonsabile = resonsabile;
-        }
-
-        public NC getNc() {
-            return nc;
-        }
-
-        public void setNc(NC nc) {
-            this.nc = nc;
-        }
-
-    }
+        joinColumns =@JoinColumn(name = "NumeroNC"))})
+public class Responsabilita implements Serializable {
 
     @EmbeddedId
     private PKResponsabilita pkResponsabilita = new PKResponsabilita();
@@ -89,14 +58,6 @@ public class Responsabilita {
 
     public void setRepartoLavorativo(String repartoLavorativo) {
         this.repartoLavorativo = repartoLavorativo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.pkResponsabilita);
-        hash = 47 * hash + Objects.hashCode(this.repartoLavorativo);
-        return hash;
     }
 
     @Override

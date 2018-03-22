@@ -26,41 +26,10 @@ import javax.persistence.Table;
 @Table(name = "Appartenere")
 @AssociationOverrides({
     @AssociationOverride(name = "pkAppartenere.membro",
-        joinColumns ={ @JoinColumn(name = "Matricola")}),
+        joinColumns =@JoinColumn(name = "Matricola")),
     @AssociationOverride(name = "pkAppartenere.nc",
-        joinColumns = {@JoinColumn(name = "NumeroNC")}) })
+        joinColumns =@JoinColumn(name = "NumeroNC")) })
 public class Appartenere {
-    
-    @Embeddable
-    class PKAppartenere{
-        @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-        //@JoinColumn(name="Matricola", nullable=false) //length = 6
-        private Dipendenti membro;
-        
-        @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-        //@JoinColumn(name="NumeroNC", nullable=false)//length = 5
-        private NC nc;
-        
-        public PKAppartenere(){
-        }
-
-        public Dipendenti getMembro() {
-            return membro;
-        }
-
-        public void setMembro(Dipendenti membro) {
-            this.membro = membro;
-        }
-
-        public NC getNc() {
-            return nc;
-        }
-
-        public void setNc(NC nc) {
-            this.nc = nc;
-        }
-        
-    }
     
     @EmbeddedId
     private PKAppartenere pkAppartenere = new PKAppartenere();
@@ -87,13 +56,6 @@ public class Appartenere {
         this.ruolo = ruolo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.pkAppartenere);
-        hash = 47 * hash + Objects.hashCode(this.ruolo);
-        return hash;
-    }
 
     @Override
     public boolean equals(Object obj) {

@@ -33,7 +33,7 @@ public class DipendentiController {
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
         List<Dipendenti> dipendenti=service.findAll();
-        model.addAttribute("tutti", dipendenti);
+        model.addAttribute("dipendenti", dipendenti);
         return "dipendenti";
     }
  
