@@ -31,7 +31,6 @@ public class DipendentiDaoImpl implements DipendentiDao {
         return sessionFactory.getCurrentSession();
     }
     public Dipendenti findById(int id) {
-        getSession().beginTransaction();
         return (Dipendenti) getSession().get(Dipendenti.class, id);
     }
 
