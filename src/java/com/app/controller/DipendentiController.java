@@ -42,10 +42,10 @@ public class DipendentiController {
     public String listNC(@PathVariable("matricola") int matricola, ModelMap model){
         Dipendenti dipendente=service.findById(matricola);
         model.addAttribute("dipendente",dipendente);
-        /*model.addAttribute("ncResponsabile",dipendente.getNcResponsabile());
+        model.addAttribute("ncResponsabile",dipendente.getNcResponsabile());
         model.addAttribute("ncLeader",dipendente.getNcLeader());
         model.addAttribute("ncMembro",dipendente.getNcAppartiene());
-        model.addAttribute("ncRichiede",dipendente.getNcRichiede());*/
+        model.addAttribute("ncRichiede",dipendente.getNcRichiede());
         return "nc";
     }
  

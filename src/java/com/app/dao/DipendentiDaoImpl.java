@@ -34,6 +34,17 @@ public class DipendentiDaoImpl implements DipendentiDao {
         return (Dipendenti) getSession().get(Dipendenti.class, id);
     }
 
+    /*
+    public void saveEmployee(Employee employee) {
+        getSession().persist(employee);
+    }
+ 
+    public void deleteEmployee(int id) {
+        Employee e = (Employee) getSession().load(Employee.class, id);
+	if(e!=null) getSession().delete(e);
+    }
+    */
+    
     @Override
     public List<Dipendenti> findAll() {
         /*List<Dipendenti> l;

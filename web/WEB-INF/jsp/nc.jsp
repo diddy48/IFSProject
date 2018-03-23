@@ -18,7 +18,6 @@
     <h2>NC dipendente</h2>  
     
     <table border="1" cellspacing ="3">
-        
 	<tr>
             <th>Numero NC</th>
             <th>Titolo</th>
@@ -29,7 +28,7 @@
             <th>Codice Prodotto</th>
             
          </tr>
-    <c:forEach items="${dipendente.getNcLeader()}" var="nc">
+    <c:forEach items="${dipendente.ncLeader}" var="nc">
 	<tr>
             <td>${nc.numeroNC}</td>
             <td>${nc.titolo}</td>
