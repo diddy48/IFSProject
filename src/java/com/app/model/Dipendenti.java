@@ -54,16 +54,16 @@ public class Dipendenti implements Serializable {
     @Column(name = "Password", nullable = false, length = 30)
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="teamLeader")
+    @OneToMany( mappedBy="teamLeader")
     private Set<NC> ncLeader = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="richiedente")
+    @OneToMany( mappedBy="richiedente")
     private Set<NC> ncRichiede = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
     private Set<Appartenere> ncAppartiene = new HashSet();
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
+    @OneToMany( mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     private Set<Responsabilita> ncResponsabile = new HashSet();
     
     public Dipendenti() {
@@ -215,6 +215,6 @@ public class Dipendenti implements Serializable {
         }
         return true;
     }
-    
+
     
 }

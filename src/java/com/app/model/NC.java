@@ -340,5 +340,4 @@ public class NC implements Serializable {
         return true;
     }
     
-    
 }

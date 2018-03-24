@@ -67,4 +67,6 @@ public class PKResponsabilita implements Serializable {
         return true;
     }
 
+
+    
 }
