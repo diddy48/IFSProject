@@ -29,7 +29,7 @@
             <th>Codice Prodotto</th>
             
          </tr>
-    <c:forEach items="${dipendente.ncLeader}" var="nc">
+    <c:forEach items="${ncLeader}" var="nc">
 	<tr>
             <td>${nc.numeroNC}</td>
             <td>${nc.titolo}</td>

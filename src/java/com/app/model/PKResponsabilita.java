@@ -19,11 +19,11 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class PKResponsabilita implements Serializable {
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "Matricola", nullable = false) //length=5
     private Dipendenti responsabile;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "NumeroNC", nullable = false) //length=6
     private NC nc;
 

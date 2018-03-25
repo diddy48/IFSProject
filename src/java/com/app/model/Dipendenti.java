@@ -14,6 +14,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,16 +56,16 @@ public class Dipendenti implements Serializable {
     @Column(name = "Password", nullable = false, length = 30)
     private String password;
 
-    @OneToMany( mappedBy="teamLeader")
+    @OneToMany(fetch = EAGER,mappedBy="teamLeader")
     private Set<NC> ncLeader = new HashSet();
     
-    @OneToMany( mappedBy="richiedente")
+    @OneToMany(fetch = EAGER,mappedBy="richiedente")
     private Set<NC> ncRichiede = new HashSet();
     
-    @OneToMany(mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
+    @OneToMany(fetch = EAGER,mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
     private Set<Appartenere> ncAppartiene = new HashSet();
     
-    @OneToMany( mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
+    @OneToMany(fetch = LAZY,mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     private Set<Responsabilita> ncResponsabile = new HashSet();
     
     public Dipendenti() {

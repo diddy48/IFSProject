@@ -20,11 +20,11 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class PKAppartenere implements Serializable{
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name="Matricola", nullable=false) //length = 6
     private Dipendenti membro;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name="NumeroNC", nullable=false)//length = 5
     private NC nc;
 

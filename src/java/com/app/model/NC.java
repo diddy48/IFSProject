@@ -88,11 +88,11 @@ public class NC implements Serializable {
     @Column(name = "Cliente", length=40)
     private String cliente;
       
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Richiedente")
     private Dipendenti richiedente;
     
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
     
