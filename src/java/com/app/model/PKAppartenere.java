@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -20,11 +21,11 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class PKAppartenere implements Serializable{
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch= LAZY, cascade = CascadeType.ALL)
     //@JoinColumn(name="Matricola", nullable=false) //length = 6
     private Dipendenti membro;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     //@JoinColumn(name="NumeroNC", nullable=false)//length = 5
     private NC nc;
 

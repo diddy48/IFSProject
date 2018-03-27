@@ -5,10 +5,11 @@
  */
 package com.app.dao;
 
-import com.app.model.Dipendenti;
 import com.app.model.NC;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,23 @@ public class NCDaoImpl implements NCDao{
         return l;*/
         Criteria criteria = getSession().createCriteria(NC.class);
         return (List<NC>) criteria.list();
+    }
+
+    @Override
+    public List<NC> findNCResponsabileById(int id) {
+        /*List<NC> l;
+        Query q=getSession().createQuery("from Responsabilita r,NC nc,Dipendenti d "
+                + "where r.Matricola=d.Matricola AND r.NumeroNc=nc.Numero.NC AND "
+                + "Matricola="+id);
+        l=q.list(); 
+        return l;*/
+        
+        /*
+        SQLQuery query = getSession().createSQLQuery("SELECT * from Responsabilita r,NC nc,Dipendenti d "
+                + "where r.Matricola=d.Matricola AND r.NumeroNc=nc.Numero.NC AND "
+                + "Matricola="+id);
+        return (List<NC>) query.list();*/
+        return null;
     }
 
  

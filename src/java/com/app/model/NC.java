@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -88,11 +89,11 @@ public class NC implements Serializable {
     @Column(name = "Cliente", length=40)
     private String cliente;
       
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="Richiedente")
     private Dipendenti richiedente;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
     
