@@ -65,7 +65,7 @@ public class Dipendenti implements Serializable {
     @OneToMany(fetch = EAGER,mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
     private Set<Appartenere> ncAppartiene = new HashSet();
     
-    @OneToMany(fetch = LAZY,mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
+    @OneToMany(fetch = EAGER,mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     private Set<Responsabilita> ncResponsabile = new HashSet();
     
     public Dipendenti() {
