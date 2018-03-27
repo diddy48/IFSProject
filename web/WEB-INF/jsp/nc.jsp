@@ -35,8 +35,8 @@
             <td>${nc.titolo}</td>
             <td>${nc.descrizione}</td>
             <td>${nc.dataA}</td>
-            <td>${nc.dataC}</td>
-            <td>${nc.priorita}</td>
+            <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
+            <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
             <td>${nc.codiceProdotto}</td>
          </tr>
     </c:forEach>
