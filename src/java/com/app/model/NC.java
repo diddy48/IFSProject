@@ -58,10 +58,10 @@ public class NC implements Serializable {
     private Priorita priorita;
     
     @Column(name = "CodiceProdotto", nullable = false, length=6)
-    private int codiceProdotto;
+    private Integer codiceProdotto;
     
     @Column(name = "CostoNC")
-    private float costoNC;
+    private Float costoNC;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "RepartoProdotto", nullable = false)
@@ -154,19 +154,19 @@ public class NC implements Serializable {
         this.priorita = priorita;
     }
 
-    public int getCodiceProdotto() {
+    public Integer getCodiceProdotto() {
         return codiceProdotto;
     }
 
-    public void setCodiceProdotto(int codiceProdotto) {
+    public void setCodiceProdotto(Integer codiceProdotto) {
         this.codiceProdotto = codiceProdotto;
     }
 
-    public float getCostoNC() {
+    public Float getCostoNC() {
         return costoNC;
     }
 
-    public void setCostoNC(float costoNC) {
+    public void setCostoNC(Float costoNC) {
         this.costoNC = costoNC;
     }
 
