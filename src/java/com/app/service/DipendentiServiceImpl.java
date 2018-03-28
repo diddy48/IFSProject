@@ -26,11 +26,11 @@ public class DipendentiServiceImpl implements DipendentiService {
         return dao.findById(id);
     }
  
-    /*@Override
+    @Override
     public void saveDipedenti(Dipendenti dip) {
-        dao.saveCategoria(dip);
+        dao.saveDipendenti(dip);
     }
-
+/*
     @Override
     public void updateDipedenti(Dipendenti dip) {
         Dipedenti entity = dao.findById(dip.getId());
@@ -49,6 +49,5 @@ public class DipendentiServiceImpl implements DipendentiService {
     public List<Dipendenti> findAll() {
         return dao.findAll();
     }
- 
    
 }

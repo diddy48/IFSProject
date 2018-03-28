@@ -56,5 +56,10 @@ public class DipendentiDaoImpl implements DipendentiDao {
         return (List<Dipendenti>) criteria.list();
     }
 
+    @Override
+    public void saveDipendenti(Dipendenti dip) {
+        getSession().persist(dip);
+    }
+
  
 }

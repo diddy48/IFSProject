@@ -66,7 +66,7 @@ public class NCDaoImpl implements NCDao{
         return l;*/
         
         /*
-        SQLQuery query = getSession().createSQLQuery("SELECT * from Responsabilita r,NC nc,Dipendenti d "
+        SQLQuery query = getSession().createSQLQuery("from Responsabilita r,NC nc,Dipendenti d "
                 + "where r.Matricola=d.Matricola AND r.NumeroNc=nc.Numero.NC AND "
                 + "Matricola="+id);
         return (List<NC>) query.list();*/

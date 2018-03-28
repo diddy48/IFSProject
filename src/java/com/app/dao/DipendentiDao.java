@@ -14,5 +14,6 @@ import java.util.List;
  */
 public interface DipendentiDao {
     Dipendenti findById(int id);
+    void saveDipendenti(Dipendenti dip);
     List<Dipendenti> findAll();
 }
