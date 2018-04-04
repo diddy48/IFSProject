@@ -24,14 +24,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository("NCDao")
-public class NCDaoImpl implements NCDao{
+public class NCDaoImpl implements NCDao {
+
     @Autowired
     private SessionFactory sessionFactory;
- 
-    
-    protected Session getSession(){
+
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+
     public NC findById(int id) {
         return (NC) getSession().get(NC.class, id);
     }
@@ -45,8 +46,7 @@ public class NCDaoImpl implements NCDao{
         Employee e = (Employee) getSession().load(Employee.class, id);
 	if(e!=null) getSession().delete(e);
     }
-    */
-    
+     */
     @Override
     public List<NC> findAll() {
         /*List<Dipendenti> l;
@@ -66,16 +66,18 @@ public class NCDaoImpl implements NCDao{
                 + "r.Matricola="+id);
         l=q.list(); 
         return l;*/
-        
-        /*
-        SQLQuery query = getSession().createSQLQuery("from Responsabilita r,NC nc "
+        SQLQuery query = getSession().createSQLQuery("select"
+                + " nc.`NumeroNC`, `Titolo`, `Descrizione`, `DataApertura`, `DataChiusura`, `Priorita`, `CodiceProdotto`, `CostoNC`, `RepartoProdotto`, `AContenimento`, `Cause`, `ACorrettiva`, `APreventiva`, `IntesaComprensione`, `Tipo`, `Cliente`, `Richiedente`, `TeamLeader`"
+                + " from Responsabilita r,NC nc "
                 + "where r.NumeroNC=nc.NumeroNC AND "
-                + "Matricola="+id);
-        return (List<NC>) query.list();*/
+                + "r.Matricola= :matricola ");
+        query.addEntity(NC.class).addEntity(Responsabilita.class);
+        query.setParameter("matricola", id);
+        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        return query.list();
         //return null;
-        Criteria criteria = getSession().createCriteria(NC.class,"nc").createAlias("nc.responsabili", "responsabili").add(Restrictions.eq("responsabili.pkResponsabilita.responsabile", id));
-        return criteria.list();
+        /*Criteria criteria = getSession().createCriteria(NC.class,"nc").createAlias("nc.responsabili", "responsabili").add(Restrictions.eq("responsabili.pkResponsabilita.responsabile", id));
+        return criteria.list();*/
     }
 
- 
 }
