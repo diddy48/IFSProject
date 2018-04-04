@@ -9,6 +9,7 @@ package com.app.controller;
 import com.app.dao.DipendentiDao;
 import com.app.model.Dipendenti;
 import com.app.service.DipendentiService;
+import com.app.service.NCService;
 //import com.app.service.NCService;
 import java.util.List;
  
@@ -30,7 +31,7 @@ public class DipendentiController {
     @Autowired
     DipendentiService serviceDip;
     
-    /*D@Autowired
+    @Autowired
     NCService  serviceNc;
     /*
      * This method will list all existing users.
@@ -46,8 +47,8 @@ public class DipendentiController {
     public String listNC(@PathVariable("matricola") int matricola, ModelMap model){
         Dipendenti dipendente=serviceDip.findById(matricola);
         model.addAttribute("dipendente",dipendente);
-        //model.addAttribute("ncResponsabile",serviceNc.findNCResponsabileById(matricola));
-        model.addAttribute("ncReponsabile",dipendente.getNcResponsabile());
+        model.addAttribute("ncResponsabile",serviceNc.findNCResponsabileById(matricola));
+        //model.addAttribute("ncReponsabile",dipendente.getNcResponsabile());
         model.addAttribute("ncLeader",dipendente.getNcLeader());
         model.addAttribute("ncMembro",dipendente.getNcAppartiene());
         model.addAttribute("ncRichiede",dipendente.getNcRichiede());

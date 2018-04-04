@@ -6,12 +6,14 @@
 package com.app.dao;
 
 import com.app.model.NC;
+import com.app.model.Responsabilita;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,18 +61,20 @@ public class NCDaoImpl implements NCDao{
     @Override
     public List<NC> findNCResponsabileById(int id) {
         /*List<NC> l;
-        Query q=getSession().createQuery("from Responsabilita r,NC nc,Dipendenti d "
-                + "where r.Matricola=d.Matricola AND r.NumeroNc=nc.Numero.NC AND "
-                + "Matricola="+id);
+        Query q=getSession().createQuery("from Responsabilita r,NC nc"
+                + "where r.NumeroNC=nc.NumeroNC AND "
+                + "r.Matricola="+id);
         l=q.list(); 
         return l;*/
         
         /*
-        SQLQuery query = getSession().createSQLQuery("from Responsabilita r,NC nc,Dipendenti d "
-                + "where r.Matricola=d.Matricola AND r.NumeroNc=nc.Numero.NC AND "
+        SQLQuery query = getSession().createSQLQuery("from Responsabilita r,NC nc "
+                + "where r.NumeroNC=nc.NumeroNC AND "
                 + "Matricola="+id);
         return (List<NC>) query.list();*/
-        return null;
+        //return null;
+        Criteria criteria = getSession().createCriteria(NC.class,"nc").createAlias("nc.responsabili", "responsabili").add(Restrictions.eq("responsabili.pkResponsabilita.responsabile", id));
+        return criteria.list();
     }
 
  

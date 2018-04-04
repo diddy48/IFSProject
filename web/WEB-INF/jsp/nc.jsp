@@ -72,7 +72,7 @@
             </table>
         </c:if>
 
-       <!-- <h3>NC di cui è responsabile</h3>
+       <h3>NC di cui è responsabile</h3>
         <c:if test="${!empty ncResponsabile}">
 
             <c:forEach items="${ncResponsabile}" var="nc">
