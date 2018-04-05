@@ -75,7 +75,6 @@
        <h3>NC di cui è responsabile</h3>
         <c:if test="${!empty ncResponsabile}">
 
-            <c:forEach items="${ncResponsabile}" var="nc">
                 <table border="1" cellspacing ="3">
                     <tr>
                         <th>Numero NC</th>
@@ -87,6 +86,7 @@
                         <th>Codice Prodotto</th>
 
                     </tr>
+            <c:forEach items="${ncResponsabile}" var="nc">
                     <tr>
                         <td>${nc.numeroNC}</td>
                         <td>${nc.titolo}</td>
