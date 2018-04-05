@@ -58,12 +58,14 @@ public class NCDaoImpl implements NCDao {
 
     @Override
     public List<NC> findNCResponsabileById(int id) {
+        List<NC> nc = new ArrayList<NC>();
         Criteria criteria1 = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", id));
+        if(criteria1.list().isEmpty()) return nc;
         Dipendenti dipNC = (Dipendenti) criteria1.list().get(0);
         Criteria criteria2 = getSession().createCriteria(Responsabilita.class).add(Restrictions.eq("pkResponsabilita.responsabile", dipNC));
         List<Responsabilita> resp = criteria2.list();
+        if(resp.isEmpty()) return nc;
         Criteria criteria3;
-        List<NC> nc = new ArrayList<NC>();
         for(Responsabilita r: resp){
             List<NC> lista =getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
             if(!lista.isEmpty()){

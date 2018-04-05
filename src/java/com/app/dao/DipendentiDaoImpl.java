@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
  
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
  
@@ -59,6 +60,13 @@ public class DipendentiDaoImpl implements DipendentiDao {
     @Override
     public void saveDipendenti(Dipendenti dip) {
         getSession().persist(dip);
+    }
+
+    @Override
+    public Dipendenti findDipendenti(String mail, String password) {
+        Criteria criteria = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("mail", mail)).add(Restrictions.eq("password", password));
+        if(criteria.list().isEmpty()) return null;
+        return (Dipendenti) criteria.list().get(0);
     }
 
  

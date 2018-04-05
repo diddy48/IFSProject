@@ -100,7 +100,7 @@
             </table>
         </c:if>
 
-        <!--<h3>NC a cui fa parte come mebro del team di lavoro</h3>
+        <h3>NC a cui fa parte come mebro del team di lavoro</h3>
         <c:if test="${!empty ncAppartiene}">
             <table border="1" cellspacing ="3">
                 <tr>
@@ -125,6 +125,6 @@
                 </tr>
             </c:forEach>
         </table>
-        </c:if>-->
+        </c:if>
     </body>
 </html>

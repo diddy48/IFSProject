@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface DipendentiDao {
     Dipendenti findById(int id);
+    Dipendenti findDipendenti(String mail,String password);
     void saveDipendenti(Dipendenti dip);
     List<Dipendenti> findAll();
 }

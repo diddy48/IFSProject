@@ -49,5 +49,10 @@ public class DipendentiServiceImpl implements DipendentiService {
     public List<Dipendenti> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    public Dipendenti findDipendenti(String mail, String password) {
+        return dao.findDipendenti(mail, password);
+    }
    
 }
