@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -30,20 +31,21 @@ import javax.persistence.Table;
 @Table(name = "Responsabilita")
 @AssociationOverrides({
     @AssociationOverride(name = "pkResponsabilita.responsabile",
-        joinColumns = @JoinColumn(name = "Matricola")),
+            joinColumns = {
+                @JoinColumn(name = "Matricola")})
+    ,
     @AssociationOverride(name = "pkResponsabilita.nc",
-        joinColumns =@JoinColumn(name = "NumeroNC"))})
+            joinColumns = {
+                @JoinColumn(name = "NumeroNC")})})
 public class Responsabilita implements Serializable {
 
-    @EmbeddedId
     private PKResponsabilita pkResponsabilita = new PKResponsabilita();
-
-    @Column(name = "RepartoLavorativo", length = 40)
     private String repartoLavorativo;
 
     public Responsabilita() {
     }
 
+    @EmbeddedId
     public PKResponsabilita getPkResponsabilita() {
         return pkResponsabilita;
     }
@@ -52,12 +54,31 @@ public class Responsabilita implements Serializable {
         this.pkResponsabilita = pkResponsabilita;
     }
 
+    @Column(name = "RepartoLavorativo", length = 40)
     public String getRepartoLavorativo() {
         return repartoLavorativo;
     }
 
     public void setRepartoLavorativo(String repartoLavorativo) {
         this.repartoLavorativo = repartoLavorativo;
+    }
+
+    @Transient
+    public Dipendenti getResponsabile() {
+        return getPkResponsabilita().getResponsabile();
+    }
+
+    public void setResponsabile(Dipendenti dip) {
+        getPkResponsabilita().setResponsabile(dip);
+    }
+
+    @Transient
+    public NC getNc() {
+        return getPkResponsabilita().getNc();
+    }
+
+    public void setNc(NC nc) {
+        getPkResponsabilita().setNc(nc);
     }
 
     @Override

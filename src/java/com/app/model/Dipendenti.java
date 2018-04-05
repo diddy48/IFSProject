@@ -22,55 +22,33 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author romano3927
  */
 @Entity
-@Table(name="Dipendenti")
+@Table(name = "Dipendenti")
 public class Dipendenti implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Matricola")
     private int matricola;
-    
-    @Column(name = "CF", nullable = false, length = 16)
     private String cf;
-    
-    @Column(name = "Nome", nullable = false, length = 30)
     private String nome;
-    
-    @Column(name = "Cognome", nullable = false, length = 30)
     private String cognome;
-    
-    @Column(name = "DataNascita", nullable = false)
     private Date dataNascita;
-    
-    @Column(name = "Ruolo", nullable = false, length = 20)
     private String ruolo;
-    
-    @Column(name = "Mail", nullable = false, length = 35)
     private String mail;
-    
-    @Column(name = "Password", nullable = false, length = 30)
     private String password;
-
-    @OneToMany(fetch = EAGER,mappedBy="teamLeader")
     private Set<NC> ncLeader = new HashSet();
-    
-    @OneToMany(fetch = EAGER,mappedBy="richiedente")
     private Set<NC> ncRichiede = new HashSet();
-    
-    @OneToMany(fetch = EAGER,mappedBy="pkAppartenere.membro", cascade = CascadeType.ALL)
     private Set<Appartenere> ncAppartiene = new HashSet();
-    
-    @OneToMany(fetch = EAGER,mappedBy="pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     private Set<Responsabilita> ncResponsabile = new HashSet();
     
     public Dipendenti() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Matricola")
     public int getMatricola() {
         return matricola;
     }
@@ -79,6 +57,7 @@ public class Dipendenti implements Serializable {
         this.matricola = matricola;
     }
 
+    @Column(name = "CF", nullable = false, length = 16)
     public String getCf() {
         return cf;
     }
@@ -87,6 +66,7 @@ public class Dipendenti implements Serializable {
         this.cf = cf;
     }
 
+    @Column(name = "Nome", nullable = false, length = 30)
     public String getNome() {
         return nome;
     }
@@ -95,6 +75,7 @@ public class Dipendenti implements Serializable {
         this.nome = nome;
     }
 
+    @Column(name = "Cognome", nullable = false, length = 30)
     public String getCognome() {
         return cognome;
     }
@@ -103,6 +84,7 @@ public class Dipendenti implements Serializable {
         this.cognome = cognome;
     }
 
+    @Column(name = "DataNascita", nullable = false)
     public Date getDataNascita() {
         return dataNascita;
     }
@@ -111,6 +93,7 @@ public class Dipendenti implements Serializable {
         this.dataNascita = dataNascita;
     }
 
+    @Column(name = "Ruolo", nullable = false, length = 20)
     public String getRuolo() {
         return ruolo;
     }
@@ -119,6 +102,7 @@ public class Dipendenti implements Serializable {
         this.ruolo = ruolo;
     }
 
+    @Column(name = "Mail", nullable = false, length = 35)
     public String getMail() {
         return mail;
     }
@@ -127,6 +111,7 @@ public class Dipendenti implements Serializable {
         this.mail = mail;
     }
 
+    @Column(name = "Password", nullable = false, length = 30)
     public String getPassword() {
         return password;
     }
@@ -135,6 +120,7 @@ public class Dipendenti implements Serializable {
         this.password = password;
     }
 
+    @OneToMany(fetch = EAGER, mappedBy = "teamLeader")
     public Set<NC> getNcLeader() {
         return ncLeader;
     }
@@ -143,6 +129,7 @@ public class Dipendenti implements Serializable {
         this.ncLeader = ncLeader;
     }
 
+    @OneToMany(fetch = EAGER, mappedBy = "richiedente")
     public Set<NC> getNcRichiede() {
         return ncRichiede;
     }
@@ -151,6 +138,7 @@ public class Dipendenti implements Serializable {
         this.ncRichiede = ncRichiede;
     }
 
+    @OneToMany(fetch = EAGER, mappedBy = "pkAppartenere.membro", cascade = CascadeType.ALL)
     public Set<Appartenere> getNcAppartiene() {
         return ncAppartiene;
     }
@@ -159,6 +147,7 @@ public class Dipendenti implements Serializable {
         this.ncAppartiene = ncAppartiene;
     }
 
+    @OneToMany(fetch = EAGER, mappedBy = "pkResponsabilita.responsabile", cascade = CascadeType.ALL)
     public Set<Responsabilita> getNcResponsabile() {
         return ncResponsabile;
     }
@@ -218,5 +207,4 @@ public class Dipendenti implements Serializable {
         return true;
     }
 
-    
 }

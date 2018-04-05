@@ -8,10 +8,12 @@ package com.app.controller;
 
 import com.app.dao.DipendentiDao;
 import com.app.model.Dipendenti;
+import com.app.model.Responsabilita;
 import com.app.service.DipendentiService;
 import com.app.service.NCService;
 //import com.app.service.NCService;
 import java.util.List;
+import java.util.Set;
  
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ public class DipendentiController {
         model.addAttribute("ncResponsabile",serviceNc.findNCResponsabileById(matricola));
         //model.addAttribute("ncReponsabile",dipendente.getNcResponsabile());
         model.addAttribute("ncLeader",dipendente.getNcLeader());
-        model.addAttribute("ncMembro",dipendente.getNcAppartiene());
+        //model.addAttribute("ncMembro",dipendente.getNcAppartiene());
         model.addAttribute("ncRichiede",dipendente.getNcRichiede());
         return "nc";
     }

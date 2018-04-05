@@ -36,76 +36,33 @@ import javax.persistence.Table;
 @Table(name = "NC")
 public class NC implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "NumeroNC")
     private int numeroNC;
-
-    @Column(name = "Titolo", nullable = false, length = 30)
     private String titolo;
-
-    @Column(name = "Descrizione", nullable = false, length = 300)
     private String descrizione;
-
-    @Column(name = "DataApertura", nullable = false)
     private Date dataA;
-
-    @Column(name = "DataChiusura")
     private Date DataC;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name = "Priorita", nullable = false)
     private Priorita priorita;
-    
-    @Column(name = "CodiceProdotto", nullable = false, length=6)
     private Integer codiceProdotto;
-    
-    @Column(name = "CostoNC")
     private Float costoNC;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name = "RepartoProdotto", nullable = false)
     private RepartoProdotto repartoP;
-    
-    @Column(name = "AContenimento", length = 300)
     private String aContenimento;
-
-    @Column(name = "Cause", length = 300)
     private String cause;
-
-    @Column(name = "ACorrettiva",  length = 300)
     private String aCorrettiva;
-
-    @Column(name = "APreventiva", length = 300)
     private String aPreventiva;
-
-    @Column(name = "IntesaComprensione",  length = 300)
     private String intesaComp;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "Tipo", nullable = false)
     private Tipo tipo;
-     
-    @Column(name = "Cliente", length=40)
     private String cliente;
-      
-    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="Richiedente")
     private Dipendenti richiedente;
-    
-    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="TeamLeader", nullable=false)
     private Dipendenti teamLeader;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkAppartenere.nc",cascade = CascadeType.ALL)
     private Set<Appartenere> membri = new HashSet();
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pkResponsabilita.nc", cascade = CascadeType.ALL)
-    private Set<Responsabilita> responsabili  = new HashSet();
+    private Set<Responsabilita> responsabili = new HashSet();
 
     public NC() {
     }
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "NumeroNC")
     public int getNumeroNC() {
         return numeroNC;
     }
@@ -114,6 +71,7 @@ public class NC implements Serializable {
         this.numeroNC = numeroNC;
     }
 
+    @Column(name = "Titolo", nullable = false, length = 30)
     public String getTitolo() {
         return titolo;
     }
@@ -122,6 +80,7 @@ public class NC implements Serializable {
         this.titolo = titolo;
     }
 
+    @Column(name = "Descrizione", nullable = false, length = 300)
     public String getDescrizione() {
         return descrizione;
     }
@@ -130,6 +89,7 @@ public class NC implements Serializable {
         this.descrizione = descrizione;
     }
 
+    @Column(name = "DataApertura", nullable = false)
     public Date getDataA() {
         return dataA;
     }
@@ -138,6 +98,7 @@ public class NC implements Serializable {
         this.dataA = dataA;
     }
 
+    @Column(name = "DataChiusura")
     public Date getDataC() {
         return DataC;
     }
@@ -146,6 +107,8 @@ public class NC implements Serializable {
         this.DataC = DataC;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Priorita", nullable = false)
     public Priorita getPriorita() {
         return priorita;
     }
@@ -154,6 +117,7 @@ public class NC implements Serializable {
         this.priorita = priorita;
     }
 
+    @Column(name = "CodiceProdotto", nullable = false, length = 6)
     public Integer getCodiceProdotto() {
         return codiceProdotto;
     }
@@ -162,6 +126,7 @@ public class NC implements Serializable {
         this.codiceProdotto = codiceProdotto;
     }
 
+    @Column(name = "CostoNC")
     public Float getCostoNC() {
         return costoNC;
     }
@@ -170,6 +135,8 @@ public class NC implements Serializable {
         this.costoNC = costoNC;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "RepartoProdotto", nullable = false)
     public RepartoProdotto getRepartoP() {
         return repartoP;
     }
@@ -178,6 +145,7 @@ public class NC implements Serializable {
         this.repartoP = repartoP;
     }
 
+    @Column(name = "AContenimento", length = 300)
     public String getaContenimento() {
         return aContenimento;
     }
@@ -186,6 +154,7 @@ public class NC implements Serializable {
         this.aContenimento = aContenimento;
     }
 
+    @Column(name = "Cause", length = 300)
     public String getCause() {
         return cause;
     }
@@ -194,6 +163,7 @@ public class NC implements Serializable {
         this.cause = cause;
     }
 
+    @Column(name = "ACorrettiva", length = 300)
     public String getaCorrettiva() {
         return aCorrettiva;
     }
@@ -202,6 +172,7 @@ public class NC implements Serializable {
         this.aCorrettiva = aCorrettiva;
     }
 
+    @Column(name = "APreventiva", length = 300)
     public String getaPreventiva() {
         return aPreventiva;
     }
@@ -210,6 +181,7 @@ public class NC implements Serializable {
         this.aPreventiva = aPreventiva;
     }
 
+    @Column(name = "IntesaComprensione", length = 300)
     public String getIntesaComp() {
         return intesaComp;
     }
@@ -218,6 +190,8 @@ public class NC implements Serializable {
         this.intesaComp = intesaComp;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Tipo", nullable = false)
     public Tipo getTipo() {
         return tipo;
     }
@@ -226,6 +200,7 @@ public class NC implements Serializable {
         this.tipo = tipo;
     }
 
+    @Column(name = "Cliente", length = 40)
     public String getCliente() {
         return cliente;
     }
@@ -234,6 +209,8 @@ public class NC implements Serializable {
         this.cliente = cliente;
     }
 
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "Richiedente")
     public Dipendenti getRichiedente() {
         return richiedente;
     }
@@ -242,6 +219,8 @@ public class NC implements Serializable {
         this.richiedente = richiedente;
     }
 
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TeamLeader", nullable = false)
     public Dipendenti getTeamLeader() {
         return teamLeader;
     }
@@ -250,6 +229,7 @@ public class NC implements Serializable {
         this.teamLeader = teamLeader;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pkAppartenere.nc", cascade = CascadeType.ALL)
     public Set<Appartenere> getMembri() {
         return membri;
     }
@@ -258,6 +238,7 @@ public class NC implements Serializable {
         this.membri = membri;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pkResponsabilita.nc", cascade = CascadeType.ALL)
     public Set<Responsabilita> getResponsabili() {
         return responsabili;
     }
@@ -340,5 +321,5 @@ public class NC implements Serializable {
         }
         return true;
     }
-    
+
 }

@@ -17,6 +17,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -31,15 +32,13 @@ import javax.persistence.Table;
         joinColumns =@JoinColumn(name = "NumeroNC")) })
 public class Appartenere {
     
-    @EmbeddedId
     private PKAppartenere pkAppartenere = new PKAppartenere();
-    
-    @Column(name="Ruolo",length=50)
     private String ruolo;
 
     public Appartenere() {
     }
     
+    @EmbeddedId
     public PKAppartenere getPkAppartenere() {
         return pkAppartenere;
     }
@@ -48,6 +47,7 @@ public class Appartenere {
         this.pkAppartenere = pkAppartenere;
     }
 
+    @Column(name="Ruolo",length=50)
     public String getRuolo() {
         return ruolo;
     }
@@ -55,7 +55,24 @@ public class Appartenere {
     public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
     }
+    
+    @Transient
+    public Dipendenti getMembro() {
+        return getPkAppartenere().getMembro();
+    }
 
+    public void setMembro(Dipendenti dip) {
+        getPkAppartenere().setMembro(dip);
+    }
+
+    @Transient
+    public NC getNc() {
+        return getPkAppartenere().getNc();
+    }
+
+    public void setNc(NC nc) {
+        getPkAppartenere().setNc(nc);
+    }
 
     @Override
     public boolean equals(Object obj) {

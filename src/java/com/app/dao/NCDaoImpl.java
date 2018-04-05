@@ -5,9 +5,12 @@
  */
 package com.app.dao;
 
+import com.app.model.Dipendenti;
 import com.app.model.NC;
 import com.app.model.Responsabilita;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -49,35 +52,25 @@ public class NCDaoImpl implements NCDao {
      */
     @Override
     public List<NC> findAll() {
-        /*List<Dipendenti> l;
-        Query q=getSession().createQuery("from Dipendenti");
-        l=q.list(); 
-      
-        return l;*/
         Criteria criteria = getSession().createCriteria(NC.class);
         return (List<NC>) criteria.list();
     }
 
     @Override
     public List<NC> findNCResponsabileById(int id) {
-        /*List<NC> l;
-        Query q=getSession().createQuery("from Responsabilita r,NC nc"
-                + "where r.NumeroNC=nc.NumeroNC AND "
-                + "r.Matricola="+id);
-        l=q.list(); 
-        return l;*/
-        SQLQuery query = getSession().createSQLQuery("select"
-                + " nc.`NumeroNC`, `Titolo`, `Descrizione`, `DataApertura`, `DataChiusura`, `Priorita`, `CodiceProdotto`, `CostoNC`, `RepartoProdotto`, `AContenimento`, `Cause`, `ACorrettiva`, `APreventiva`, `IntesaComprensione`, `Tipo`, `Cliente`, `Richiedente`, `TeamLeader`"
-                + " from Responsabilita r,NC nc "
-                + "where r.NumeroNC=nc.NumeroNC AND "
-                + "r.Matricola= :matricola ");
-        query.addEntity(NC.class).addEntity(Responsabilita.class);
-        query.setParameter("matricola", id);
-        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-        return query.list();
-        //return null;
-        /*Criteria criteria = getSession().createCriteria(NC.class,"nc").createAlias("nc.responsabili", "responsabili").add(Restrictions.eq("responsabili.pkResponsabilita.responsabile", id));
-        return criteria.list();*/
+        Criteria criteria1 = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", id));
+        Dipendenti dipNC = (Dipendenti) criteria1.list().get(0);
+        Criteria criteria2 = getSession().createCriteria(Responsabilita.class).add(Restrictions.eq("pkResponsabilita.responsabile", dipNC));
+        List<Responsabilita> resp = criteria2.list();
+        Criteria criteria3;
+        List<NC> nc = new ArrayList<NC>();
+        for(Responsabilita r: resp){
+            List<NC> lista =getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            if(!lista.isEmpty()){
+                nc.add(lista.get(0));
+            }
+        }
+        return nc;
     }
 
 }

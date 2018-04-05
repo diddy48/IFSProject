@@ -21,17 +21,16 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class PKAppartenere implements Serializable{
 
-    @ManyToOne(fetch= LAZY, cascade = CascadeType.ALL)
     //@JoinColumn(name="Matricola", nullable=false) //length = 6
     private Dipendenti membro;
 
-    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     //@JoinColumn(name="NumeroNC", nullable=false)//length = 5
     private NC nc;
 
     public PKAppartenere() {
     }
 
+    @ManyToOne(fetch= LAZY, cascade = CascadeType.ALL)
     public Dipendenti getMembro() {
         return membro;
     }
@@ -40,6 +39,7 @@ public class PKAppartenere implements Serializable{
         this.membro = membro;
     }
 
+    @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     public NC getNc() {
         return nc;
     }
