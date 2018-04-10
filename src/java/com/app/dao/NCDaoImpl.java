@@ -5,6 +5,7 @@
  */
 package com.app.dao;
 
+import com.app.model.Appartenere;
 import com.app.model.Dipendenti;
 import com.app.model.NC;
 import com.app.model.Responsabilita;
@@ -75,4 +76,22 @@ public class NCDaoImpl implements NCDao {
         return nc;
     }
 
+    @Override
+    public List<NC> findNCAppartenereById(int id) {
+        List<NC> nc = new ArrayList<NC>();
+        Criteria criteria1 = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", id));
+        if(criteria1.list().isEmpty()) return nc;
+        Dipendenti dipNC = (Dipendenti) criteria1.list().get(0);
+        Criteria criteria2 = getSession().createCriteria(Appartenere.class).add(Restrictions.eq("pkAppartenere.membro", dipNC));
+        List<Appartenere> resp = criteria2.list();
+        if(resp.isEmpty()) return nc;
+        Criteria criteria3;
+        for(Appartenere r: resp){
+            List<NC> lista =getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            if(!lista.isEmpty()){
+                nc.add(lista.get(0));
+            }
+        }
+        return nc;
+    }
 }

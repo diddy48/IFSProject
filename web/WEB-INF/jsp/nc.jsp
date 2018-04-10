@@ -72,9 +72,8 @@
             </table>
         </c:if>
 
-       <h3>NC di cui è responsabile</h3>
         <c:if test="${!empty ncResponsabile}">
-
+       <h3>NC di cui è responsabile</h3>
                 <table border="1" cellspacing ="3">
                     <tr>
                         <th>Numero NC</th>
@@ -100,8 +99,8 @@
             </table>
         </c:if>
 
+        <c:if test="${!empty ncMembro}">
         <h3>NC a cui fa parte come mebro del team di lavoro</h3>
-        <c:if test="${!empty ncAppartiene}">
             <table border="1" cellspacing ="3">
                 <tr>
                     <th>Numero NC</th>
@@ -113,7 +112,7 @@
                     <th>Codice Prodotto</th>
 
                 </tr>
-            <c:forEach items="${ncRichiede}" var="nc">
+            <c:forEach items="${ncMembro}" var="nc">
                 <tr>
                     <td>${nc.numeroNC}</td>
                     <td>${nc.titolo}</td>

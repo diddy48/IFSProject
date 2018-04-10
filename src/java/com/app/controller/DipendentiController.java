@@ -54,20 +54,22 @@ public class DipendentiController {
     public String listNC(@PathVariable("matricola") int matricola, ModelMap model) {
         Dipendenti dipendente = serviceDip.findById(matricola);
         model.addAttribute("dipendente", dipendente);
+        model.addAttribute("ncLeader", dipendente.getNcLeader());
+        model.addAttribute("ncRichiede", dipendente.getNcRichiede());
         model.addAttribute("ncResponsabile", serviceNc.findNCResponsabileById(matricola));
         //model.addAttribute("ncReponsabile",dipendente.getNcResponsabile());
-        model.addAttribute("ncLeader", dipendente.getNcLeader());
+        model.addAttribute("ncMembro", serviceNc.findNCAppartenereById(matricola));
         //model.addAttribute("ncMembro",dipendente.getNcAppartiene());
-        model.addAttribute("ncRichiede", dipendente.getNcRichiede());
         return "nc";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "mail") String m, @RequestParam(value="password") String p) {
+    public String login(@RequestParam(value = "mail") String m, @RequestParam(value="password") String p,ModelMap model) {
         Dipendenti d = serviceDip.findDipendenti(m,p);
         if (d==null){
+            model.addAttribute("error","Nome utente o password errati");
             return "index";
         }
-        return "redirect:/showNC/"+d.getCf();
+        return "redirect:/showNC/"+d.getMatricola();
     }
 }

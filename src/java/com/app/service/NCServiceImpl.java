@@ -53,4 +53,9 @@ public class NCServiceImpl implements NCService {
     public List<NC> findNCResponsabileById(int id) {
         return dao.findNCResponsabileById(id);
     }
+
+    @Override
+    public List<NC> findNCAppartenereById(int id) {
+        return dao.findNCAppartenereById(id);
+    }
 }

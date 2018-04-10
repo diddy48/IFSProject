@@ -18,5 +18,6 @@ public interface NCService {
     void updateDipedenti(Dipendenti dip);
     void deleteDipendenti(int id);*/
     List<NC> findNCResponsabileById(int id);
+    List<NC> findNCAppartenereById(int id);
     List<NC> findAll(); 
 }
