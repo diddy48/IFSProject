@@ -41,16 +41,17 @@ public class NCDaoImpl implements NCDao {
         return (NC) getSession().get(NC.class, id);
     }
 
-    /*
-    public void saveEmployee(Employee employee) {
-        getSession().persist(employee);
+    public void saveNC(NC nc) {
+        getSession().persist(nc);
     }
- 
-    public void deleteEmployee(int id) {
-        Employee e = (Employee) getSession().load(Employee.class, id);
-	if(e!=null) getSession().delete(e);
+
+    public void deleteNC(int id) {
+        NC nc = (NC) getSession().load(NC.class, id);
+        if (nc != null) {
+            getSession().delete(nc);
+        }
     }
-     */
+
     @Override
     public List<NC> findAll() {
         Criteria criteria = getSession().createCriteria(NC.class);
@@ -61,15 +62,19 @@ public class NCDaoImpl implements NCDao {
     public List<NC> findNCResponsabileById(int id) {
         List<NC> nc = new ArrayList<NC>();
         Criteria criteria1 = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", id));
-        if(criteria1.list().isEmpty()) return nc;
+        if (criteria1.list().isEmpty()) {
+            return nc;
+        }
         Dipendenti dipNC = (Dipendenti) criteria1.list().get(0);
         Criteria criteria2 = getSession().createCriteria(Responsabilita.class).add(Restrictions.eq("pkResponsabilita.responsabile", dipNC));
         List<Responsabilita> resp = criteria2.list();
-        if(resp.isEmpty()) return nc;
+        if (resp.isEmpty()) {
+            return nc;
+        }
         Criteria criteria3;
-        for(Responsabilita r: resp){
-            List<NC> lista =getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
-            if(!lista.isEmpty()){
+        for (Responsabilita r : resp) {
+            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            if (!lista.isEmpty()) {
                 nc.add(lista.get(0));
             }
         }
@@ -80,15 +85,19 @@ public class NCDaoImpl implements NCDao {
     public List<NC> findNCAppartenereById(int id) {
         List<NC> nc = new ArrayList<NC>();
         Criteria criteria1 = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", id));
-        if(criteria1.list().isEmpty()) return nc;
+        if (criteria1.list().isEmpty()) {
+            return nc;
+        }
         Dipendenti dipNC = (Dipendenti) criteria1.list().get(0);
         Criteria criteria2 = getSession().createCriteria(Appartenere.class).add(Restrictions.eq("pkAppartenere.membro", dipNC));
         List<Appartenere> resp = criteria2.list();
-        if(resp.isEmpty()) return nc;
+        if (resp.isEmpty()) {
+            return nc;
+        }
         Criteria criteria3;
-        for(Appartenere r: resp){
-            List<NC> lista =getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
-            if(!lista.isEmpty()){
+        for (Appartenere r : resp) {
+            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            if (!lista.isEmpty()) {
                 nc.add(lista.get(0));
             }
         }

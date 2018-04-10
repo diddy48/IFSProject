@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface NCService {
     NC findById(int id);
-    /*void saveDipedenti(Dipendenti dip);
-    void updateDipedenti(Dipendenti dip);
-    void deleteDipendenti(int id);*/
+    void saveNC(NC nc);
+    void deleteNC(int id);/*
+    void updateDipedenti(NC dip);*/
     List<NC> findNCResponsabileById(int id);
     List<NC> findNCAppartenereById(int id);
     List<NC> findAll(); 

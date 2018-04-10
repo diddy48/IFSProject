@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface NCDao {
     NC findById(int id);
+    void saveNC(NC dip);
+    void deleteNC(int id);
     List<NC> findNCResponsabileById(int id);
     List<NC> findNCAppartenereById(int id);
     List<NC> findAll();

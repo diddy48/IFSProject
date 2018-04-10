@@ -19,18 +19,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("NCService")//forse minuscolo dip
 @Transactional
 public class NCServiceImpl implements NCService {
-    
+
     @Autowired
     private NCDao dao;
-     
+
     public NC findById(int id) {
         return dao.findById(id);
     }
- 
-    /*@Override
-    public void saveDipedenti(NC dip) {
-        dao.saveCategoria(dip);
+
+    @Override
+    public void saveNC(NC nc) {
+        dao.saveNC(nc);
     }
+
+    @Override
+    public void deleteNC(int id) {
+        dao.deleteNC(id);
+    }
+
+    /*
 
     @Override
     public void updateDipedenti(NC dip) {
@@ -41,15 +48,12 @@ public class NCServiceImpl implements NCService {
         }
     }
 
-    @Override
-    public void deleteNC(int id) {
-        dao.deleteCategoria(id);
-    }
-*/
+     */
     @Override
     public List<NC> findAll() {
         return dao.findAll();
     }
+
     public List<NC> findNCResponsabileById(int id) {
         return dao.findNCResponsabileById(id);
     }
