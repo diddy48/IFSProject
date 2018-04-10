@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     </head>
     <body>
         <form action="login" method="POST">
@@ -27,8 +28,8 @@
                 </tr>
             </table>
         </form>
-       <c:if test="${error!=null}">
-           <h4 style="color:red;">${error}</h4>
-       </c:if>
-    </body>
+    <c:if test="${error!=null}">
+        <h4 style="color:red;">${error}</h4>
+    </c:if>
+</body>
 </html>

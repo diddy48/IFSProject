@@ -13,6 +13,7 @@ import com.app.service.NCService;
 //import com.app.service.NCService;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PathVariable;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -64,15 +66,24 @@ public class DipendentiController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "mail") String m, @RequestParam(value="password") String p,ModelMap model) {
-        Dipendenti d = serviceDip.findDipendenti(m,p);
-        if (d==null){
-            model.addAttribute("error","Nome utente o password errati");
+    public String login(@RequestParam(value = "mail") String m, @RequestParam(value = "password") String p, ModelMap model, HttpSession session) {
+        Dipendenti d = serviceDip.findDipendenti(m, p);
+        if (d == null) {
+            model.addAttribute("error", "Nome utente o password errati");
             return "index";
         }
-        if(d.getMail().equals("admin@administrator.com")){
+        session.setAttribute("mail", d.getMail());
+        session.setAttribute("id", d.getMatricola());
+        session.setAttribute("nome", d.getNome());
+        if (d.getMail().equals("admin@administrator.com")) {
             return "redirect:/showDip";
         }
-        return "redirect:/showNC/"+d.getMatricola();
+        return "redirect:/showNC/" + d.getMatricola();
+    }
+
+    @RequestMapping(value = "/logout", method = POST)
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "index";
     }
 }
