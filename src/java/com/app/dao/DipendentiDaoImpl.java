@@ -3,58 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.app.dao;
- 
+
 //import biblio.model.Utenti;
 import com.app.model.Dipendenti;
 import java.util.List;
- 
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
- 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
- 
+
 @Transactional
 @Repository("DipendentiDao")
 public class DipendentiDaoImpl implements DipendentiDao {
- 
+
     @Autowired
     private SessionFactory sessionFactory;
- 
-    
-    protected Session getSession(){
+
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+
+    @Override
     public Dipendenti findById(int id) {
         return (Dipendenti) getSession().get(Dipendenti.class, id);
-    }
-
-    /*
-    public void saveEmployee(Employee employee) {
-        getSession().persist(employee);
-    }
- 
-    public void deleteEmployee(int id) {
-        Employee e = (Employee) getSession().load(Employee.class, id);
-	if(e!=null) getSession().delete(e);
-    }
-    */
-    
-    @Override
-    public List<Dipendenti> findAll() {
-        /*List<Dipendenti> l;
-        Query q=getSession().createQuery("from Dipendenti");
-        l=q.list(); 
-      
-        return l;*/
-        Criteria criteria = getSession().createCriteria(Dipendenti.class);
-        return (List<Dipendenti>) criteria.list();
     }
 
     @Override
@@ -63,11 +41,26 @@ public class DipendentiDaoImpl implements DipendentiDao {
     }
 
     @Override
+    public void deleteDipendenti(int id) {
+        Dipendenti d = (Dipendenti) getSession().load(Dipendenti.class, id);
+        if (d != null) {
+            getSession().delete(d);
+        }
+    }
+
+    @Override
+    public List<Dipendenti> findAll() {
+        Criteria criteria = getSession().createCriteria(Dipendenti.class);
+        return (List<Dipendenti>) criteria.list();
+    }
+
+    @Override
     public Dipendenti findDipendenti(String mail, String password) {
         Criteria criteria = getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("mail", mail)).add(Restrictions.eq("password", password));
-        if(criteria.list().isEmpty()) return null;
+        if (criteria.list().isEmpty()) {
+            return null;
+        }
         return (Dipendenti) criteria.list().get(0);
     }
 
- 
 }

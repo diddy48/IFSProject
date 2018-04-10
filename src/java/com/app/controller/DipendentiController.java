@@ -70,6 +70,9 @@ public class DipendentiController {
             model.addAttribute("error","Nome utente o password errati");
             return "index";
         }
+        if(d.getMail().equals("admin@administrator.com")){
+            return "redirect:/showDip";
+        }
         return "redirect:/showNC/"+d.getMatricola();
     }
 }
